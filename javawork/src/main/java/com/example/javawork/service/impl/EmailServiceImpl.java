@@ -9,6 +9,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+
 @Service
 public class EmailServiceImpl implements EmailService {
     @Autowired
@@ -27,7 +29,7 @@ public class EmailServiceImpl implements EmailService {
 
         String verCode = toEmail.getContent();
 
-        message.setText("尊敬的xxx,您好:\n"
+        message.setText("尊敬的"+ Arrays.toString(toEmail.getTos()) +",您好:\n"
                 + "\n本次请求的邮件验证码为:\n" + verCode + "（请勿泄露此验证码）\n"
                 + "\n如非本人操作，请忽略该邮件。\n(这是一封通过自动发送的邮件，请不要直接回复）");
 

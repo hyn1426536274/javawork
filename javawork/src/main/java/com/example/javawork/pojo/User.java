@@ -14,7 +14,8 @@ import lombok.ToString;
 @ToString // 生成一个包含所有字段的 toString 方法。
 @Data
 public class User {
-
+    private int id;
+    // 数据库查询返回User对象，User对象属性应与数据库表项对应
     private String username;
     private String password;
     private String email;

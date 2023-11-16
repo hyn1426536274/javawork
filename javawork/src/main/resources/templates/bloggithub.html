@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.min.css">
+    <style>
+        @media (max-width: 767px) {
+            body {
+                padding: 15px;
+            }
+        }
+
+        body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+    </style>
+    <title>Marked.js</title>
+</head>
+<body>
+
+<div id="renderTarget" class="markdown-body"></div>
+<!--<textarea id="markdownSource" style="display:none">-->
+<!--# Hello World-->
+<!--*Write* `your` **Markdown** here.-->
+<!--</textarea>-->
+
+<script>
+    // 获取要渲染Markdown的目标元素和Markdown源文本
+    var renderTarget = document.getElementById("renderTarget");
+    var markdownSource = "# Hello World\n" +
+        "*Write* `your` **Markdown** here.";
+
+    // 使用 marked.js 将Markdown转换为HTML，并插入到目标元素中
+    renderTarget.innerHTML = marked.parse(markdownSource);
+</script>
+
+</body>
+</html>
+
+
