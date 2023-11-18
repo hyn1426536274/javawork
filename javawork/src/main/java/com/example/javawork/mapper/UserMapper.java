@@ -12,12 +12,16 @@ public interface UserMapper{
     @Select("select * from user where id = #{id}")
     User selectById(int id);
 
+    @Select("select * from user where username = #{username}")
+    User selectByUsername(String username);
+
+    @Select("select id from user where username = #{username}")
+    int selectIdByUsername(String username);
+
     @Insert("INSERT INTO user (username, password,email) " +
             "VALUES (#{username},#{password},#{email})")
     void insert(User user);
 
-    @Select("select * from user where username = #{username}")
-    User selectByUsername(String username);
 
     @Update("update user set description=#{description} where username=#{username}")
     void updateDescription(String username,String description);
