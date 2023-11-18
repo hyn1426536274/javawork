@@ -19,8 +19,30 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public User findById(int id) {
-        return userMapper.selectById(id);
+    public ResultInfo findUserById(int id) {
+        User user= userMapper.selectById(id);
+        if(user!=null){
+            return ResultInfo.successInfo("查找用户成功",user);
+        }
+        else return ResultInfo.failInfo("找不到目标用户");
+    }
+
+    @Override
+    public ResultInfo findUserByUsername(String username) {
+        User user= userMapper.selectByUsername(username);
+        if(user!=null){
+            return ResultInfo.successInfo("查找用户成功",user);
+        }
+        else return ResultInfo.failInfo("找不到目标用户");
+    }
+
+    @Override
+    public ResultInfo findIdByUsername(String username){
+        int id = userMapper.selectIdByUsername(username);
+        if(id>0){
+            return ResultInfo.successInfo("查找id成功",id);
+        }
+        else return ResultInfo.failInfo("找不到用户:"+username);
     }
 
     @Override
@@ -50,7 +72,7 @@ public class UserServiceImpl implements UserService {
         // 使用equals而不是==来比较String
         if(Objects.equals(user.getPassword(), password))
             // 返回data = user对象
-            return ResultInfo.successInfo("登录成功",user);
+            return ResultInfo.successInfo("登录成功"+user,user);
         else return ResultInfo.failInfo("请检查用户名和密码");
     }
 

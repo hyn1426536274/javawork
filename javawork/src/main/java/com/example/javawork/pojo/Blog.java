@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Blog {
+    private int id;
     private String title;
     private String content;
     private String description;
@@ -22,4 +23,7 @@ public class Blog {
     private int comment_count;
     private int type_id;
     private int user_id;
+    private int class_id;
+    private String username;
+
 }

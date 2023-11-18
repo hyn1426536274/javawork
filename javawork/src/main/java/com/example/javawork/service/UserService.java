@@ -5,10 +5,20 @@ import com.example.javawork.pojo.User;
 
 public interface UserService {
     /**
-     * 根据Id查找用户名
+     * 根据Id查找用户
+     * (获得用户的全部信息)
+     * 应该用于查找自身（如自身个人页）
      */
-    public User findById(int id);
+    public ResultInfo findUserById(int id);
 
+    /**
+     * 根据username查找用户
+     * */
+    public ResultInfo findUserByUsername(String username);
+    /**
+     * 根据用户名获取用户id
+     * */
+    public ResultInfo findIdByUsername(String username);
     /**
      * 查询是否有重复的用户名
      */

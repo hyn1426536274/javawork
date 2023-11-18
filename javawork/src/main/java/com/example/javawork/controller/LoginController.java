@@ -43,7 +43,7 @@ public class LoginController {
         if(user!=null){
             // 后续可添加在线信息，
             session.setAttribute("user",user);
-            return ResultInfo.successInfo("登录成功");
+            return ResultInfo.successInfo("登录成功",user);
         }
         else return ResultInfo.failInfo(info.getMessage());
     }
@@ -72,39 +72,66 @@ public class LoginController {
      * 只发送邮件，注册功能在验证中完成
      * */
     @PostMapping("/register")
-    public ResultInfo register(HttpServletRequest request){
+    public ResultInfo register(HttpServletRequest request,HttpSession session){
+        // 判断用户是否存在
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String password2 = request.getParameter("password2");
+        if(username==null||username.isEmpty()){
+            return ResultInfo.failInfo("用户名不能为空");
+        }
+        if(userService.repeatUsername(username).getStatus()==0){
+            return ResultInfo.failInfo("用户名重复");
+        }
+        if(password==null||password.isEmpty()){
+            return ResultInfo.failInfo("密码不能为空");
+        }
+        if(!password.equals(password2)){
+            return ResultInfo.failInfo("两次密码不一致，请确认");
+        }
+
+
         String verCode = VerCodeGenerator.generateVerCode();
+
         // 创建邮件对象
         ToEmail toEmail = new ToEmail();
         toEmail.setTos(request.getParameter("email").split(","));
         toEmail.setContent(verCode);
 
         // 将验证码存储在 HttpSession 中，使用邮箱作为标识
-        HttpSession session = request.getSession();
+        // HttpSession session = request.getSession();
         session.setAttribute(request.getParameter("email"),verCode);
+        session.setAttribute("username",username);
+        session.setAttribute("password",password);
         return emailService.sendVerifyCode(toEmail,from);
     }
 
     @RequestMapping("/verifyCode")
-    public ResultInfo verifyCode(HttpServletRequest request){
+    public ResultInfo verifyCode(HttpServletRequest request,HttpSession session){
         String email = request.getParameter("email");
         String userCode = request.getParameter("code");
 
         // request.getSession() 默认不存在session则会新建一个返回，使用false不存在则返回null，但要验证
-        HttpSession session = request.getSession(false);
-        if(session == null){
-            return ResultInfo.failInfo("验证码未发送");
-        }
+        // HttpSession session = request.getSession(false);
+        if(userCode==null||userCode.isEmpty()) return ResultInfo.failInfo("请填写验证码");
+
         // getAttribute 返回Object类型
         String trueCode = (String) session.getAttribute(email);
+        if(trueCode == null||trueCode.isEmpty()) return ResultInfo.failInfo("验证码未发送");
+
         if(userCode.equals(trueCode)){
+            String username = (String) session.getAttribute("username");
+            String password = (String) session.getAttribute("password");
+            if(username==null||password==null){
+                return ResultInfo.failInfo("用户名或密码为空，请重新尝试");
+            }
             // 创建user对象并注册
             User user = new User();
-            user.setUsername(request.getParameter("username"));
-            user.setPassword(request.getParameter("password"));
+            user.setUsername(username);
+            user.setPassword(password);
             user.setEmail(email);
             return userService.registration(user);
         }
-        else return ResultInfo.failInfo("验证码错误");
+        else return ResultInfo.failInfo("验证码错误:"+userCode+"|"+trueCode);
     }
 }
