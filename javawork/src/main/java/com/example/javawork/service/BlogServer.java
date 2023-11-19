@@ -54,6 +54,10 @@ public interface BlogServer {
      * 不同用户文章标题可以相同
      * 如果是在主页查找则是根据文章标题查找，可能查出多篇文章
      * */
+
+    List<Blog> selectOutlineByUsernameAndClass(String cur_username,String tar_username,int class_id);
+
+
     ResultInfo insert(Blog blog);
 
     ResultInfo delete(Blog blog);

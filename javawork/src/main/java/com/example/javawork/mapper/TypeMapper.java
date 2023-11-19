@@ -11,6 +11,8 @@ import java.util.List;
 @Mapper
 public interface TypeMapper {
     @Select("select * from j_type")
-    List<Type> getAllType();
+    List<Type> selectAll();
 
+    @Select("select * from j_type where id=#{id}")
+    Type selectById(int id);
 }

@@ -4,6 +4,7 @@ import com.example.javawork.pojo.BlogClass;
 import com.example.javawork.pojo.ResultInfo;
 import com.example.javawork.pojo.User;
 import com.example.javawork.service.ClassService;
+import com.example.javawork.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class ClassController {
 
     @Autowired
     ClassService classService;
+    @Autowired
+    UserService userService;
     @RequestMapping("/getClasses")
     public ResultInfo selectClassesByUserid(HttpSession session){
         User user = (User) session.getAttribute("user");
@@ -38,6 +41,30 @@ public class ClassController {
     }
 
     /**
+     * 进入用户页面时查询其目录
+     * */
+    @PostMapping("/getUserClasses")
+    public ResultInfo selectClassesByUsername(HttpServletRequest request){
+        String username = request.getParameter("username");
+
+        if(username==null||username.isEmpty()){
+            return ResultInfo.failInfo("目标用户错误");
+        }
+        ResultInfo info = userService.findIdByUsername(username);
+        if(info.getStatus()==0){
+            return ResultInfo.failInfo(info.getMessage());
+        }
+
+        int tar_user_id = (int) info.getData();
+        List<BlogClass> blogClassList= classService.selectClassesByUserid(tar_user_id);
+        if(!blogClassList.isEmpty()){
+            return ResultInfo.successInfo("查询用户文章目录成功",blogClassList);
+        }
+        else return ResultInfo.failInfo("该用户还没有文章目录");
+    }
+
+
+    /**
      * 添加文章类别目录
      * */
     // 新建会话使用 HttpServletRequest : request.getSession()
@@ -47,7 +74,7 @@ public class ClassController {
         User user = (User) session.getAttribute("user");
         String name = request.getParameter("name");
         if(user==null) return ResultInfo.failInfo("请先登录");
-        if(Objects.equals(name, "")) return ResultInfo.failInfo("目录名不能为空");
+        if(name==null||name.isEmpty()) return ResultInfo.failInfo("目录名不能为空");
 
         BlogClass blogClass = new BlogClass();
         blogClass.setName(name);
@@ -61,7 +88,7 @@ public class ClassController {
         User user = (User) session.getAttribute("user");
         String name = request.getParameter("name");
         if(user==null) return ResultInfo.failInfo("请先登录");
-        if(Objects.equals(name, "")) return ResultInfo.failInfo("目录名不能为空");
+        if(name==null||name.isEmpty()) return ResultInfo.failInfo("目录名不能为空");
 
         BlogClass blogClass = new BlogClass();
         blogClass.setName(request.getParameter("name"));
@@ -70,6 +97,8 @@ public class ClassController {
         return classService.deleteClass(blogClass);
     }
 
+
+    // 没用？
     @PostMapping("/findClass")
     public ResultInfo findClass(HttpSession session,HttpServletRequest request){
         User user = (User) session.getAttribute("user");

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import vo.AddBlogParam;
-import vo.ChangeBlogParam;
+import com.example.javawork.vo.AddBlogParam;
+import com.example.javawork.vo.ChangeBlogParam;
 
 import java.sql.Timestamp;
 import java.util.Date;

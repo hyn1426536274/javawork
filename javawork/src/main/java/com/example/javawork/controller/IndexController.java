@@ -10,12 +10,10 @@ import com.example.javawork.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import vo.UserPageParam;
+import com.example.javawork.vo.UserPageParam;
 
 import java.util.List;
 import java.util.Objects;
@@ -90,7 +88,7 @@ public class IndexController {
                     User tar_user = (User) userinfo.getData();
                     int tar_user_id = tar_user.getId();
                     List<Blog> blogList = blogServer.selectOutlineByUserId(cur_user_id,tar_user_id);
-                    List<BlogClass> classList = classService.selectClassesByUserid(cur_user_id);
+                    List<BlogClass> classList = classService.selectClassesByUserid(tar_user_id);
                     boolean is_self = false;
 
                     // 访问其他用户，只能获取非隐私信息
@@ -120,7 +118,7 @@ public class IndexController {
                 User tar_user = (User) userinfo.getData();
                 int tar_user_id = tar_user.getId();
                 List<Blog> blogList = blogServer.selectOutlineByUserId(cur_user_id,tar_user_id);
-                List<BlogClass> classList = classService.selectClassesByUserid(cur_user_id);
+                List<BlogClass> classList = classService.selectClassesByUserid(tar_user_id);
                 boolean is_self = false;
 
                 // 访问其他用户，只能获取非隐私信息
@@ -142,6 +140,27 @@ public class IndexController {
         }
     }
 
+    @PostMapping("/user/class")
+    public ResultInfo userClassPage(HttpSession session, HttpServletRequest request){
+        User user = (User) session.getAttribute("user");
+        String cur_username;
+        if(user!=null){
+            cur_username = user.getUsername();
+        }
+        else cur_username = "";
+
+        String tar_username = request.getParameter("username");
+        int class_id = Integer.parseInt(request.getParameter("class_id"));
+        if(tar_username==null||tar_username.isEmpty()||class_id<=0){
+            return ResultInfo.failInfo("目标不明确");
+        }
+
+        List<Blog> blogList = blogServer.selectOutlineByUsernameAndClass(cur_username,tar_username,class_id);
+        if(blogList.isEmpty()){
+            return ResultInfo.failInfo("未找到文章");
+        }
+        else return ResultInfo.successInfo("查找文章成功",blogList);
+    }
     /**
      * 首页搜索
      *

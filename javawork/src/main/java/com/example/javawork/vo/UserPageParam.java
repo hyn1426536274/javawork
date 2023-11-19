@@ -1,4 +1,4 @@
-package vo;
+package com.example.javawork.vo;
 
 import com.example.javawork.pojo.Blog;
 import com.example.javawork.pojo.BlogClass;

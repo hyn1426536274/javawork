@@ -1,4 +1,4 @@
-package vo;
+package com.example.javawork.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
