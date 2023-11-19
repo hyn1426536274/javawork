@@ -15,5 +15,8 @@ public class TypeServiceImpl implements TypeService {
     private TypeMapper typeMapper;
 
     @Override
-    public List<Type> getAllType(){return typeMapper.getAllType();}
+    public List<Type> getAllType(){return typeMapper.selectAll();}
+
+    @Override
+    public Type selectById(int id){return typeMapper.selectById(id);}
 }

@@ -1,16 +1,17 @@
-package vo;
+package com.example.javawork.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChangeBlogParam implements Serializable {
-    private String origin_title; // 目标标题
+public class AddBlogParam implements Serializable {
     private String title;
     private String content;
     private String description;

@@ -17,6 +17,8 @@ public class ClassServiceImpl implements ClassService {
     @Override
     public List<BlogClass> selectClassesByUserid(int user_id){return classMapper.selectByUserid(user_id);}
 
+
+
     @Override
     public ResultInfo addClass(BlogClass blogClass){
         if(blogClass.getName()!=null){

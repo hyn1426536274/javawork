@@ -35,9 +35,20 @@ public interface BlogMapper {
     List<Blog> selectOutlineByUserIdAndPublished(int user_id);
 
     @Select("select title,description,create_time,update_time,published,views,comment_count,type_id,user_id,class_id,username" +
-            " from j_blog where title=#{title} " +
+            " from j_blog where username=#{username} " +
+            "and class_id=#{class_id}")
+    List<Blog> selectOutlineByUsernameAndClass(String username,int class_id);
+    @Select("select title,description,create_time,update_time,published,views,comment_count,type_id,user_id,class_id,username" +
+            " from j_blog where username=#{username} " +
+            "and class_id=#{class_id}" +
+            "and published=true")
+    List<Blog> selectOutlineByUsernameAndClassAndPublished(String username,int class_id);
+
+    @Select("select title,description,create_time,update_time,published,views,comment_count,type_id,user_id,class_id,username" +
+            " from j_blog where title like '%${title}%' " +
             "and published=true")
     List<Blog> selectOutlineByTitleAndPublished(String title);
+
 
     @Select("select title,description,create_time,update_time,published,views,comment_count,type_id,user_id,class_id,username" +
             " from j_blog where user_id=#{user_id} " +
@@ -49,6 +60,8 @@ public interface BlogMapper {
             "and title=#{title} " +
             "and published=true")
     Blog selectOutlineByUserIdAndTitleAndPublished(int user_id, String title);
+
+
 
     @Insert("insert into j_blog (title, content, description, create_time, " +
             "update_time, published, views, comment_count, " +

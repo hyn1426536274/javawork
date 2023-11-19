@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class BlogServerImpl implements BlogServer {
@@ -36,6 +37,8 @@ public class BlogServerImpl implements BlogServer {
         return blogMapper.selectOutlineByTitleAndPublished(title);
     }
 
+
+
     @Override
     public Blog selectByUserIdAndTitle(int cur_user_id,int tar_user_id, String title){
         if(cur_user_id==tar_user_id){
@@ -54,6 +57,14 @@ public class BlogServerImpl implements BlogServer {
         }
         // 在其他用户的个人页查找
         else return blogMapper.selectOutlineByUserIdAndTitleAndPublished(tar_user_id,title);
+    }
+
+    @Override
+    public List<Blog> selectOutlineByUsernameAndClass(String cur_username, String tar_username, int class_id){
+        if(cur_username.equals(tar_username)){
+            return blogMapper.selectOutlineByUsernameAndClass(cur_username,class_id);
+        }
+        else return blogMapper.selectOutlineByUsernameAndClassAndPublished(tar_username,class_id);
     }
 
     @Override
