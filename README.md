@@ -1,10 +1,16 @@
-# javawork
+# Javawork
 
-**use:**
+**Use:**  
+
+Tech:
 * springboot java
 * maven
 * mysql
-  
+
+IDE:
+* IntelliJ IDEA 2023.2.3
+
+
 **Vue前台地址：https://github.com/hyn1426536274/javaworkvue**
 
 Know about project：
