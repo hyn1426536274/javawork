@@ -151,7 +151,8 @@ public class IndexController {
 
         String tar_username = request.getParameter("username");
         int class_id = Integer.parseInt(request.getParameter("class_id"));
-        if(tar_username==null||tar_username.isEmpty()||class_id<=0){
+        if(tar_username==null||tar_username.isEmpty()||class_id<0){
+            // 更改class_id=0为查找所有文章
             return ResultInfo.failInfo("目标不明确");
         }
 

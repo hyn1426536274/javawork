@@ -35,12 +35,20 @@ public interface BlogMapper {
     List<Blog> selectOutlineByUserIdAndPublished(int user_id);
 
     @Select("select title,description,create_time,update_time,published,views,comment_count,type_id,user_id,class_id,username" +
+            " from j_blog where username=#{username}")
+    List<Blog> selectOutlineByUsername(String username);
+    @Select("select title,description,create_time,update_time,published,views,comment_count,type_id,user_id,class_id,username" +
+            " from j_blog where username=#{username} " +
+            "and published=true")
+    List<Blog> selectOutlineByUsernameAndPublished(String username);
+
+    @Select("select title,description,create_time,update_time,published,views,comment_count,type_id,user_id,class_id,username" +
             " from j_blog where username=#{username} " +
             "and class_id=#{class_id}")
     List<Blog> selectOutlineByUsernameAndClass(String username,int class_id);
     @Select("select title,description,create_time,update_time,published,views,comment_count,type_id,user_id,class_id,username" +
             " from j_blog where username=#{username} " +
-            "and class_id=#{class_id}" +
+            "and class_id=#{class_id} " +
             "and published=true")
     List<Blog> selectOutlineByUsernameAndClassAndPublished(String username,int class_id);
 
