@@ -61,10 +61,19 @@ public class BlogServerImpl implements BlogServer {
 
     @Override
     public List<Blog> selectOutlineByUsernameAndClass(String cur_username, String tar_username, int class_id){
-        if(cur_username.equals(tar_username)){
-            return blogMapper.selectOutlineByUsernameAndClass(cur_username,class_id);
+        if(class_id==0){
+            // 查询所有文章
+            if(cur_username.equals(tar_username)){
+                return blogMapper.selectOutlineByUsername(cur_username);
+            }
+            else return blogMapper.selectOutlineByUsernameAndPublished(tar_username);
         }
-        else return blogMapper.selectOutlineByUsernameAndClassAndPublished(tar_username,class_id);
+        else {
+            if(cur_username.equals(tar_username)){
+                return blogMapper.selectOutlineByUsernameAndClass(cur_username,class_id);
+            }
+            else return blogMapper.selectOutlineByUsernameAndClassAndPublished(tar_username,class_id);
+        }
     }
 
     @Override
