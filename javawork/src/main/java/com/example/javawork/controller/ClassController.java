@@ -83,6 +83,9 @@ public class ClassController {
         return classService.addClass(blogClass);
     }
 
+    /**
+     * 删除文章类别目录
+     * */
     @PostMapping("/deleteClass")
     public ResultInfo deleteClass(HttpSession session,HttpServletRequest request){
         User user = (User) session.getAttribute("user");
@@ -98,18 +101,18 @@ public class ClassController {
     }
 
 
-    // 没用？
-    @PostMapping("/findClass")
-    public ResultInfo findClass(HttpSession session,HttpServletRequest request){
-        User user = (User) session.getAttribute("user");
-        String name = request.getParameter("name");
-        if(user==null) return ResultInfo.failInfo("请先登录");
-        if(Objects.equals(name, "")) return ResultInfo.failInfo("目录名不能为空");
-
-        BlogClass blogClass = classService.selectClassesByUseridAndName(user.getId(), request.getParameter("name"));
-        if(blogClass!=null){
-            return ResultInfo.successInfo("查询文章目录成功",blogClass);
-        }
-        else return ResultInfo.failInfo("查询文章目录失败，目录可能不存在");
-    }
+//    // 暂时没用？
+//    @PostMapping("/findClass")
+//    public ResultInfo findClass(HttpSession session,HttpServletRequest request){
+//        User user = (User) session.getAttribute("user");
+//        String name = request.getParameter("name");
+//        if(user==null) return ResultInfo.failInfo("请先登录");
+//        if(Objects.equals(name, "")) return ResultInfo.failInfo("目录名不能为空");
+//
+//        BlogClass blogClass = classService.selectClassesByUseridAndName(user.getId(), request.getParameter("name"));
+//        if(blogClass!=null){
+//            return ResultInfo.successInfo("查询文章目录成功",blogClass);
+//        }
+//        else return ResultInfo.failInfo("查询文章目录失败，目录可能不存在");
+//    }
 }

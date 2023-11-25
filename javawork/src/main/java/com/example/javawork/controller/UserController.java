@@ -29,6 +29,32 @@ public class UserController {
     }
 
     /**
+     * 查找该目录中文章
+     * */
+    @PostMapping("/class")
+    public ResultInfo userClassPage(HttpSession session, HttpServletRequest request){
+        User user = (User) session.getAttribute("user");
+        String cur_username;
+        if(user!=null){
+            cur_username = user.getUsername();
+        }
+        else cur_username = "";
+
+        String tar_username = request.getParameter("username");
+        int class_id = Integer.parseInt(request.getParameter("class_id"));
+        if(tar_username==null||tar_username.isEmpty()||class_id<0){
+            // 更改class_id=0为查找所有文章
+            return ResultInfo.failInfo("目标不明确");
+        }
+
+        List<Blog> blogList = blogServer.selectOutlineByUsernameAndClass(cur_username,tar_username,class_id);
+        if(blogList.isEmpty()){
+            return ResultInfo.failInfo("未找到文章");
+        }
+        else return ResultInfo.successInfo("查找文章成功",blogList);
+    }
+
+    /**
      * 访问文章详情页
      * */
     @PostMapping("/article")
