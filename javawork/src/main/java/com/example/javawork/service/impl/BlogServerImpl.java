@@ -1,16 +1,13 @@
 package com.example.javawork.service.impl;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.javawork.mapper.BlogMapper;
-import com.example.javawork.pojo.Blog;
-import com.example.javawork.pojo.ResultInfo;
+import com.example.javawork.DO.Blog;
+import com.example.javawork.DO.ResultInfo;
 import com.example.javawork.service.BlogServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class BlogServerImpl implements BlogServer {

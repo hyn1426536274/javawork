@@ -1,9 +1,9 @@
 package com.example.javawork.controller;
 
-import com.example.javawork.pojo.Blog;
-import com.example.javawork.pojo.BlogClass;
-import com.example.javawork.pojo.ResultInfo;
-import com.example.javawork.pojo.User;
+import com.example.javawork.DO.Blog;
+import com.example.javawork.DO.BlogClass;
+import com.example.javawork.DO.ResultInfo;
+import com.example.javawork.DO.User;
 import com.example.javawork.service.BlogServer;
 import com.example.javawork.service.ClassService;
 import com.example.javawork.service.UserService;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.javawork.vo.UserPageParam;
+import com.example.javawork.VO.UserPageParam;
 
 import java.util.List;
 import java.util.Objects;

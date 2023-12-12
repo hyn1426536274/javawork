@@ -1,11 +1,7 @@
 package com.example.javawork.service;
 
-import com.example.javawork.pojo.Blog;
-import com.example.javawork.pojo.ResultInfo;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.example.javawork.DO.Blog;
+import com.example.javawork.DO.ResultInfo;
 
 import java.util.List;
 

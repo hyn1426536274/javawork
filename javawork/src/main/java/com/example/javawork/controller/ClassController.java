@@ -1,8 +1,8 @@
 package com.example.javawork.controller;
 
-import com.example.javawork.pojo.BlogClass;
-import com.example.javawork.pojo.ResultInfo;
-import com.example.javawork.pojo.User;
+import com.example.javawork.DO.BlogClass;
+import com.example.javawork.DO.ResultInfo;
+import com.example.javawork.DO.User;
 import com.example.javawork.service.ClassService;
 import com.example.javawork.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Objects;
 
 
 /**

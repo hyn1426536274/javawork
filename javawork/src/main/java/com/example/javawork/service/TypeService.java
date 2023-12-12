@@ -1,6 +1,6 @@
 package com.example.javawork.service;
 
-import com.example.javawork.pojo.Type;
+import com.example.javawork.DO.Type;
 
 import java.util.List;
 

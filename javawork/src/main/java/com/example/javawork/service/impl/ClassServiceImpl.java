@@ -1,12 +1,11 @@
 package com.example.javawork.service.impl;
 
 import com.example.javawork.mapper.ClassMapper;
-import com.example.javawork.pojo.BlogClass;
-import com.example.javawork.pojo.ResultInfo;
+import com.example.javawork.DO.BlogClass;
+import com.example.javawork.DO.ResultInfo;
 import com.example.javawork.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 

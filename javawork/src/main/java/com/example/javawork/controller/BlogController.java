@@ -1,8 +1,8 @@
 package com.example.javawork.controller;
 
-import com.example.javawork.pojo.Blog;
-import com.example.javawork.pojo.ResultInfo;
-import com.example.javawork.pojo.User;
+import com.example.javawork.DO.Blog;
+import com.example.javawork.DO.ResultInfo;
+import com.example.javawork.DO.User;
 import com.example.javawork.service.BlogServer;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.javawork.vo.AddBlogParam;
-import com.example.javawork.vo.ChangeBlogParam;
+import com.example.javawork.VO.AddBlogParam;
+import com.example.javawork.VO.ChangeBlogParam;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -34,7 +34,7 @@ public class BlogController {
         String title = param.getTitle();
         String content = param.getContent();
         // 文章标题和内容不能为空
-        if(title==null||content==null){
+        if(title==null||content==null||title.isEmpty()||content.isEmpty()){
             return ResultInfo.failInfo("文章标题或内容不能为空");
         }
         // 博客初始化

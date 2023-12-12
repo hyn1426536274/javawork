@@ -1,7 +1,7 @@
 package com.example.javawork.service;
 
-import com.example.javawork.pojo.ResultInfo;
-import com.example.javawork.pojo.User;
+import com.example.javawork.DO.ResultInfo;
+import com.example.javawork.DO.User;
 
 public interface UserService {
     /**

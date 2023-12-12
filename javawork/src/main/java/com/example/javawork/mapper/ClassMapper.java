@@ -1,6 +1,6 @@
 package com.example.javawork.mapper;
 
-import com.example.javawork.pojo.BlogClass;
+import com.example.javawork.DO.BlogClass;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;

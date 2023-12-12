@@ -1,8 +1,8 @@
-package com.example.javawork.vo;
+package com.example.javawork.VO;
 
-import com.example.javawork.pojo.Blog;
-import com.example.javawork.pojo.BlogClass;
-import com.example.javawork.pojo.User;
+import com.example.javawork.DO.Blog;
+import com.example.javawork.DO.BlogClass;
+import com.example.javawork.DO.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
