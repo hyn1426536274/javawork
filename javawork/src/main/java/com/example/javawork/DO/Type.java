@@ -1,4 +1,4 @@
-package com.example.javawork.pojo;
+package com.example.javawork.DO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

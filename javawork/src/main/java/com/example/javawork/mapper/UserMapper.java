@@ -1,6 +1,6 @@
 package com.example.javawork.mapper;
 
-import com.example.javawork.pojo.User;
+import com.example.javawork.DO.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

@@ -1,9 +1,8 @@
 package com.example.javawork.service.impl;
 
-import com.example.javawork.pojo.ResultInfo;
-import com.example.javawork.pojo.ToEmail;
+import com.example.javawork.DO.ResultInfo;
+import com.example.javawork.DO.ToEmail;
 import com.example.javawork.service.EmailService;
-import com.example.javawork.utils.VerCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -23,6 +22,12 @@ public class EmailServiceImpl implements EmailService {
 
         message.setFrom(from);
 
+        String emailRegEx = "^[a-z0-9A-Z]+[- | a-z0-9A-Z . _]+@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-z]{2,}$";
+        for(int i=0;i<toEmail.getTos().length;i++){
+            if(!toEmail.getTos()[i].matches(emailRegEx)){
+                return ResultInfo.failInfo("请检查邮箱格式");
+            }
+        }
         message.setTo(toEmail.getTos());
 
         message.setSubject("您本次的验证码是");
@@ -41,4 +46,5 @@ public class EmailServiceImpl implements EmailService {
             return ResultInfo.failInfo("发送失败，请检查邮箱格式");
         }
     }
+
 }

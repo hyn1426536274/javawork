@@ -1,6 +1,6 @@
 package com.example.javawork.mapper;
 
-import com.example.javawork.pojo.Blog;
+import com.example.javawork.DO.Blog;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

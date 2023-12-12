@@ -1,16 +1,13 @@
 package com.example.javawork.service.impl;
 
 import com.example.javawork.mapper.UserMapper;
-import com.example.javawork.pojo.ResultInfo;
-import com.example.javawork.pojo.User;
+import com.example.javawork.DO.ResultInfo;
+import com.example.javawork.DO.User;
 import com.example.javawork.service.UserService;
-import jakarta.annotation.Resource;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
-import java.util.SplittableRandom;
 
 
 @Service

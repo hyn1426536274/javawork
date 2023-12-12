@@ -1,11 +1,9 @@
 package com.example.javawork.controller;
 
-import com.example.javawork.pojo.Blog;
-import com.example.javawork.pojo.BlogClass;
-import com.example.javawork.pojo.ResultInfo;
-import com.example.javawork.pojo.User;
+import com.example.javawork.DO.Blog;
+import com.example.javawork.DO.ResultInfo;
+import com.example.javawork.DO.User;
 import com.example.javawork.service.BlogServer;
-import com.example.javawork.service.ClassService;
 import com.example.javawork.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

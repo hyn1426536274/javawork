@@ -1,7 +1,7 @@
 package com.example.javawork.service;
 
-import com.example.javawork.pojo.BlogClass;
-import com.example.javawork.pojo.ResultInfo;
+import com.example.javawork.DO.BlogClass;
+import com.example.javawork.DO.ResultInfo;
 
 import java.util.List;
 

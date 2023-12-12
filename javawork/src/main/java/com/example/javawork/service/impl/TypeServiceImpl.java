@@ -1,8 +1,7 @@
 package com.example.javawork.service.impl;
 
 import com.example.javawork.mapper.TypeMapper;
-import com.example.javawork.pojo.ResultInfo;
-import com.example.javawork.pojo.Type;
+import com.example.javawork.DO.Type;
 import com.example.javawork.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

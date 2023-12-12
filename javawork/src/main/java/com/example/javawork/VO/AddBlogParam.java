@@ -1,11 +1,10 @@
-package com.example.javawork.vo;
+package com.example.javawork.VO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 
 @Data

@@ -1,7 +1,7 @@
 package com.example.javawork.controller;
 
-import com.example.javawork.pojo.ResultInfo;
-import com.example.javawork.pojo.Type;
+import com.example.javawork.DO.ResultInfo;
+import com.example.javawork.DO.Type;
 import com.example.javawork.service.TypeService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
