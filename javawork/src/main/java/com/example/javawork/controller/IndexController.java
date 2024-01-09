@@ -4,7 +4,7 @@ import com.example.javawork.DO.Blog;
 import com.example.javawork.DO.BlogClass;
 import com.example.javawork.DO.ResultInfo;
 import com.example.javawork.DO.User;
-import com.example.javawork.service.BlogServer;
+import com.example.javawork.service.BlogService;
 import com.example.javawork.service.ClassService;
 import com.example.javawork.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ import java.util.Objects;
 @RestController
 public class IndexController {
     @Autowired
-    BlogServer blogServer;
+    BlogService blogServer;
     @Autowired
     ClassService classService;
     @Autowired
@@ -140,10 +140,8 @@ public class IndexController {
         }
     }
 
-
     /**
      * 首页搜索
-     *
      */
     @PostMapping("/index/search")
     ResultInfo indexSearch(HttpServletRequest request){

@@ -3,7 +3,7 @@ package com.example.javawork.controller;
 import com.example.javawork.DO.Blog;
 import com.example.javawork.DO.ResultInfo;
 import com.example.javawork.DO.User;
-import com.example.javawork.service.BlogServer;
+import com.example.javawork.service.BlogService;
 import com.example.javawork.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -19,13 +19,20 @@ public class UserController {
     @Autowired
     UserService userService; // 自动注入，选择其实现类
     @Autowired
-    BlogServer blogServer;
+    BlogService blogServer;
 
     @RequestMapping("/findUser")
     public ResultInfo SelectUserById(int id){
         return userService.findUserById(id);
     }
 
+    /**
+     * 根据Id查找用户名。主要用在评论模块
+     */
+    @RequestMapping("/findUsername")
+    public ResultInfo SelectUsernameById(int id){
+        return userService.findUsernameById(id);
+    }
     /**
      * 查找该目录中文章
      * */
@@ -68,6 +75,8 @@ public class UserController {
         if(tar_user_id > 0 && title!=null && !title.isEmpty()){
             Blog blog = blogServer.selectByUserIdAndTitle(cur_user_id,tar_user_id,title);
             if(blog!=null){
+                // 增加浏览量
+                blogServer.addViewsCount(blog);
                 return ResultInfo.successInfo("访问成功",blog);
             }
             else {

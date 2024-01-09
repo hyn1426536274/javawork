@@ -3,7 +3,7 @@ package com.example.javawork.controller;
 import com.example.javawork.DO.Blog;
 import com.example.javawork.DO.ResultInfo;
 import com.example.javawork.DO.User;
-import com.example.javawork.service.BlogServer;
+import com.example.javawork.service.BlogService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import java.util.Date;
 @RequestMapping("/user/blog")
 public class BlogController {
     @Autowired
-    BlogServer blogServer;
+    BlogService blogServer;
     @PostMapping("/addBlog")
     public ResultInfo addBlog(@RequestBody AddBlogParam param, HttpSession session){
         User user = (User)session.getAttribute("user");

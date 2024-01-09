@@ -3,14 +3,14 @@ package com.example.javawork.service.impl;
 import com.example.javawork.mapper.BlogMapper;
 import com.example.javawork.DO.Blog;
 import com.example.javawork.DO.ResultInfo;
-import com.example.javawork.service.BlogServer;
+import com.example.javawork.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class BlogServerImpl implements BlogServer {
+public class BlogServiceImpl implements BlogService {
     @Autowired
     BlogMapper blogMapper;
     @Override
@@ -71,6 +71,14 @@ public class BlogServerImpl implements BlogServer {
             }
             else return blogMapper.selectOutlineByUsernameAndClassAndPublished(tar_username,class_id);
         }
+    }
+
+    @Override
+    public void addViewsCount(Blog blog){
+        // 浏览数加一
+        int tar_views_count = blog.getViews() + 1 ;
+        blog.setViews(tar_views_count);
+        blogMapper.update(blog);
     }
 
     @Override

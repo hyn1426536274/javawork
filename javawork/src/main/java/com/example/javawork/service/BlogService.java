@@ -5,7 +5,7 @@ import com.example.javawork.DO.ResultInfo;
 
 import java.util.List;
 
-public interface BlogServer {
+public interface BlogService {
     /**
      * 查找用户的所有博客
      * （判断输入的user_id是否为当前登录的user_id）
@@ -52,6 +52,9 @@ public interface BlogServer {
      * */
 
     List<Blog> selectOutlineByUsernameAndClass(String cur_username,String tar_username,int class_id);
+
+    void addViewsCount(Blog blog);
+
 
 
     ResultInfo insert(Blog blog);

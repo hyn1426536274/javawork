@@ -19,6 +19,13 @@ public interface UserService {
      * 根据用户名获取用户id
      * */
     public ResultInfo findIdByUsername(String username);
+
+    /**
+     * 根据用户id获取用户名
+     * 用于评论功能
+     * */
+    public ResultInfo findUsernameById(int id);
+
     /**
      * 查询是否有重复的用户名
      */
