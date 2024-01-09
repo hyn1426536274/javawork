@@ -69,8 +69,6 @@ public interface BlogMapper {
             "and published=true")
     Blog selectOutlineByUserIdAndTitleAndPublished(int user_id, String title);
 
-
-
     @Insert("insert into j_blog (title, content, description, create_time, " +
             "update_time, published, views, comment_count, " +
             "type_id, user_id,class_id,username) " +
@@ -85,6 +83,7 @@ public interface BlogMapper {
             "description = #{description}, " +
             "update_time = #{update_time}, " +
             "published = #{published}, " +
+            "views = #{views}, " +
             "type_id = #{type_id}, " +
             "class_id = #{class_id} " +
             "WHERE id = #{id}")

@@ -35,11 +35,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResultInfo findIdByUsername(String username){
-        int id = userMapper.selectIdByUsername(username);
-        if(id>0){
-            return ResultInfo.successInfo("查找id成功",id);
+        User user = userMapper.selectByUsername(username);
+        if(user==null){
+            return ResultInfo.failInfo("找不到用户:"+username);
         }
-        else return ResultInfo.failInfo("找不到用户:"+username);
+        return ResultInfo.successInfo("查找id成功",user.getId());
+    }
+
+    @Override
+    public ResultInfo findUsernameById(int id){
+        String username = userMapper.selectUsernameById(id);
+        if(username==null||username.isEmpty()){
+            return ResultInfo.failInfo("找不到用户"+id);
+        }
+        return ResultInfo.successInfo("查找成功",username);
     }
 
     @Override

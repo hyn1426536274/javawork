@@ -1,0 +1,17 @@
+http://localhost:8888/index/search
+http://localhost:8888/user/article
+
+http://localhost:8888/getTypeById
+http://localhost:8888/getAllType
+http://localhost:8888/user/class
+http://localhost:8888/user/getClasses
+http://localhost:8888/user/addClass
+http://localhost:8888/user/deleteClass
+http://localhost:8888/user/blog/updateBlog
+http://localhost:8888/user/blog/addBlog
+http://localhost:8888/user/blog/deleteBlog
+
+http://localhost:8888/admin/login
+http://localhost:8888/admin/loginOut
+http://localhost:8888/admin/register
+http://localhost:8888/admin/verifyCode
